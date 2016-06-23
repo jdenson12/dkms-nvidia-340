@@ -3,17 +3,16 @@
 
 Name:           dkms-%{dkms_name}
 Version:        340.96
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          2
 License:        NVIDIA License
 URL:            http://www.nvidia.com/object/unix.html
 # Package is not noarch as it contains pre-compiled binary code
-ExclusiveArch:  %{ix86} x86_64 armv7hl
+ExclusiveArch:  %{ix86} x86_64
 
 Source0:        %{dkms_name}-kmod-%{version}-i386.tar.xz
 Source1:        %{dkms_name}-kmod-%{version}-x86_64.tar.xz
-Source2:        %{dkms_name}-kmod-%{version}-armv7hl.tar.xz
 Source3:        %{name}-multi.conf
 
 BuildRequires:  sed
@@ -37,10 +36,6 @@ and rebuild the modules.
 
 %ifarch x86_64
 %setup -q -T -b 1 -n %{dkms_name}-kmod-%{version}-x86_64
-%endif
-
-%ifarch armv7hl
-%setup -q -T -b 2 -n %{dkms_name}-kmod-%{version}-armv7hl
 %endif
 
 cat kernel/uvm/dkms.conf.fragment >> kernel/dkms.conf
@@ -67,6 +62,9 @@ dkms remove -m %{dkms_name} -v %{version} -q --all || :
 %{_usrsrc}/%{dkms_name}-%{version}
 
 %changelog
+* Thu Jun 23 2016 Simone Caronni <negativo17@gmail.com> - 2:340.96-2
+- Remove ARM (Carma, Kayla) support.
+
 * Tue Nov 17 2015 Simone Caronni <negativo17@gmail.com> - 2:340.96-1
 - Update to 340.96.
 
