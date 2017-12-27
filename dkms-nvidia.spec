@@ -3,7 +3,7 @@
 
 Name:           dkms-%{dkms_name}
 Version:        340.104
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          2
 License:        NVIDIA License
@@ -67,6 +67,9 @@ dkms remove -m %{dkms_name} -v %{version} -q --all || :
 %{_usrsrc}/%{dkms_name}-%{version}
 
 %changelog
+* Sat Dec 23 2017 Jemma Denson <jdenson@gmail.com> - 2:340.104-2
+- Version bump to match nvidia-driver
+
 * Fri Dec 22 2017 Jemma Denson <jdenson@gmail.com> - 2:340.104-1
 - Update to 340.104.
 - Remove kernel 4.10 patch.
